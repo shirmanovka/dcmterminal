@@ -6,8 +6,8 @@ import requests
 import json
 
 def dcm_pricing_spread():
-    st.header("DCM Pricing Spread")
-    st.title('Pricing spread')
+    st.header("Pricing spread")
+    #st.title('Pricing spread')
 
     df = pd.read_excel('Карта рынка.xlsx', skiprows=1)
     df['spread'] = (df['Спред, пп'] * 100)
@@ -56,7 +56,7 @@ def dcm_pricing_spread():
 
 
 def dcm_matchbox():
-    st.header("DCM Matchbox")
+    st.header("Matchbox")
     
     moex_url = 'https://iss.moex.com/iss/engines/stock/markets/bonds/boards/TQCB/securities.json'
     response = requests.get(moex_url) #получим ответ от сервера
@@ -107,7 +107,7 @@ def dcm_matchbox():
                'spread', 'Cspread', 'deltaS', 'Name_rating_gap']].copy()
     
     # Создаем Streamlit интерфейс
-    st.title('Matchbox')
+    # st.title('Matchbox')
     st.header('Карта рынка флоутеров, данные отражены в режиме Т-1')
     
               
@@ -188,18 +188,18 @@ def dcm_matchbox():
 
 
 def dcm_Mat_val():
-    st.header("DCM MatVal")
+    st.header("MatVal")
     # Вставьте код из приложения DCM Terminal
 
 def main():
-    st.title("Analyst Terminal")
-    menu = st.sidebar.selectbox("Выберите приложение", ("DCM Pricing Spread", "DCM Matchbox", "DCM MatVal"))
+    st.title("DCM analytical terminal")
+    menu = st.sidebar.selectbox("Выберите приложение", ("Pricing Spread", "Matchbox", "MatVal"))
 
-    if menu == "DCM Pricing Spread":
+    if menu == "Pricing Spread":
         dcm_pricing_spread()
-    elif menu == "DCM Matchbox":
+    elif menu == "Matchbox":
         dcm_matchbox()
-    elif menu == "DCM MatVal":
+    elif menu == "MatVal":
         dcm_terminal()
 
 if __name__ == "__main__":
