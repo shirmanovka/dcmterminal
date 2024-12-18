@@ -197,7 +197,7 @@ def dcm_terminal():
     # Вставьте код из приложения DCM Terminal
 
 def main():
-    st.title("MatVal")
+    st.title("Analyst Terminal")
     menu = st.sidebar.selectbox("Выберите приложение", ("DCM Pricing Spread", "DCM Matchbox", "DCM MatVal"))
 
     if menu == "DCM Pricing Spread":
