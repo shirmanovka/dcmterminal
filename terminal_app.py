@@ -189,7 +189,7 @@ def dcm_Mat_val():
     # Вставьте код из приложения DCM Terminal
 
 # Заголовок приложения
-    st.title("Фильтр данных по погашению")
+    #st.title("Фильтр данных по погашению")
     
     # Чтение данных из Excel
     df = pd.read_excel('Карта рынка fix.xlsx', skiprows=1)
