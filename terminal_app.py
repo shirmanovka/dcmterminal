@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
-
+import requests
+import json
 
 def dcm_pricing_spread():
     st.header("DCM Pricing Spread")
@@ -56,12 +57,6 @@ def dcm_pricing_spread():
 
 def dcm_matchbox():
     st.header("DCM Matchbox")
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    import streamlit as st
-    import requests
-    import json
     
     moex_url = 'https://iss.moex.com/iss/engines/stock/markets/bonds/boards/TQCB/securities.json'
     response = requests.get(moex_url) #получим ответ от сервера
@@ -192,7 +187,7 @@ def dcm_matchbox():
     st.write("*Если облигационный выпуск имеет амортизацию, то расчет изменения спреда ее не учитывает.")
 
 
-def dcm_terminal():
+def dcm_Mat_val():
     st.header("DCM MatVal")
     # Вставьте код из приложения DCM Terminal
 
