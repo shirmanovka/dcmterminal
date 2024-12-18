@@ -252,7 +252,7 @@ def dcm_Mat_val():
 
 
 def main():
-    st.title("DCM analytical terminal")
+    st.sidebar.title("DCM analytical terminal")
     menu = st.sidebar.selectbox("Выберите приложение", ("Pricing spread", "Matchbox", "Maturity volume"))
 
     if menu == "Pricing spread":
