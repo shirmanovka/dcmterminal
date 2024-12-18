@@ -260,7 +260,7 @@ def main():
     elif menu == "Matchbox":
         dcm_matchbox()
     elif menu == "Maturity volume":
-        dcm_terminal()
+        dcm_Mat_val()
 
 if __name__ == "__main__":
     main()
