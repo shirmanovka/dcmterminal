@@ -445,7 +445,7 @@ def dcm_Currency_Indexes_Swap():
 
 def main():
     st.sidebar.title("DCM analytical terminal")
-    menu = st.sidebar.selectbox("Выберите приложение", ("Pricing spread", "Matchbox", "Maturity volume","Currency, Indexes, Swap Curve")
+    menu = st.sidebar.selectbox("Выберите приложение", ("Pricing spread", "Matchbox", "Maturity volume","Currency, Indexes, Swap Curve"))
 
     if menu == "Pricing spread":
         dcm_pricing_spread()
