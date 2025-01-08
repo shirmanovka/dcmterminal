@@ -437,7 +437,7 @@ def dcm_Currency_Indexes_Swap():
             st.write(f"Дата выгрузки: {trade_date}")
             
             # Строим график
-            fig = px.line(filtered_data, x='tenor', y='swap_rate', title=f'Кривая свопа "{swap_curve_filter}"')
+            fig = px.line(filtered_data, x='Период', y='Cтавка', title=f'Кривая свопа "{swap_curve_filter}"')
             st.plotly_chart(fig, use_container_width=True)
     
     if st.button('Обновить данные', key='refresh'):
