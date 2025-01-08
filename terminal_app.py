@@ -424,24 +424,38 @@ def dcm_Currency_Indexes_Swap():
     curves_data = get_swap_curves()
     
     if curves_data is not None:
-        # Убедимся, что столбец 'swap_curve' существует
-        if 'swap_curve' in curves_data.columns:
-            swap_curve_filter = st.selectbox('Выберите кривую:', options=curves_data['swap_curve'].unique())
-            filtered_data = curves_data.query(f"swap_curve == '{swap_curve_filter}'")
-            
-            # Получение даты выгрузки
-            trade_date_str = filtered_data['tradedate'].values[0]
-            trade_date = datetime.strptime(trade_date_str, '%Y-%m-%d').strftime('%d.%m.%Y')  # Преобразуем формат даты
-            
-            # Выводим дату выгрузки
-            st.write(f"Дата выгрузки: {trade_date}")
-            
-            # Строим график
-            fig = px.line(filtered_data, x='Период', y='Cтавка', title=f'Кривая свопа "{swap_curve_filter}"')
-            st.plotly_chart(fig, use_container_width=True)
-    
+    # Убедимся, что столбец 'swap_curve' существует
+    if 'swap_curve' in curves_data.columns:
+        swap_curve_filter = st.selectbox('Выберите кривую:', options=curves_data['swap_curve'].unique())
+        filtered_data = curves_data.query(f"swap_curve == '{swap_curve_filter}'")
+        
+        # Получение даты выгрузки
+        trade_date_str = filtered_data['tradedate'].values[0]
+        trade_date = datetime.strptime(trade_date_str, '%Y-%m-%d').strftime('%d.%m.%Y')  # Преобразуем формат даты
+        
+        # Выводим дату выгрузки
+        st.write(f"Дата выгрузки: {trade_date}")
+        
+        # Строим график
+        fig = px.line(filtered_data,
+                      x='tenor',
+                      y='swap_rate',
+                      title=f'Кривая свопа "{swap_curve_filter}"',
+                      color_discrete_sequence=['darkred']  # Устанавливаем цвет линии на красный
+                     )
+        
+        # Настройка подписей осей
+        fig.update_layout(xaxis_title='Период',
+                          yaxis_title='Ставка свопа',
+                         )
+        
+        st.plotly_chart(fig, use_container_width=True)  
+        
     if st.button('Обновить данные', key='refresh'):
         st.script_runner.rerun()
+
+
+
 
 def main():
     st.sidebar.title("DCM analytical terminal")
