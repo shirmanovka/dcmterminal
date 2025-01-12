@@ -479,7 +479,7 @@ def dcm_Currency_Indexes_Swap():
             
             # Настройка подписей осей
             fig.update_layout(xaxis_title='Период',
-                              yaxis_title='Ставка свопа',
+                              yaxis_title='Ставка',
                              )
             
             st.plotly_chart(fig, use_container_width=True)  
