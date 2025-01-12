@@ -310,15 +310,23 @@ def dcm_Currency_Indexes_Swap():
         data = pd.DataFrame(result['marketdata']['data'], columns=col_names)
         return data
     
-    
     def load_rgbi():
         moex_url = 'https://iss.moex.com/iss/engines/stock/markets/index/securities/RGBI.json'
         df = get_data(moex_url)
         return df
     
-    
     def load_imoex():
         moex_url = 'https://iss.moex.com/iss/engines/stock/markets/index/securities/IMOEX.json'
+        df = get_data(moex_url)
+        return df
+
+    def load_RUFLCBCP():
+        moex_url = 'https://iss.moex.com/iss/engines/stock/markets/index/securities/RUFLCBCP.json'
+        df = get_data(moex_url)
+        return df
+    
+    def load_RUFLBICP():
+        moex_url = 'https://iss.moex.com/iss/engines/stock/markets/index/securities/RUFLBICP.json'
         df = get_data(moex_url)
         return df
     
@@ -416,6 +424,31 @@ def dcm_Currency_Indexes_Swap():
         change_color = "green" if last_change >= 0 else "red"
         st.markdown(f"Изменение к закрытию: <span style='color:{change_color}; font-weight:bold; font-size:16px;'>{last_change:.2f}%</span>", unsafe_allow_html=True)
         st.text(f"Дата обновления: {imoex_df['SYSTIME'].values[0]}")
+# Индексы RUFLBICP и RUFLCBCP ценовые
+
+    left_column, right_column = st.columns(2)
+    
+    with left_column:
+        st.subheader(f"Corp RUFLCBCP: {load_RUFLCBCP()['CURRENTVALUE'].values[0]}")
+        
+        RUFLCBCP_df = load_RUFLCBCP()
+        
+        last_change = float(RUFLCBCP_df['LASTCHANGEPRC'].values[0])
+        change_color = "green" if last_change >= 0 else "red"
+        st.markdown(f"Изменение к закрытию: <span style='color:{change_color}; font-weight:bold; font-size:16px;'>{last_change:.2f}%</span>", unsafe_allow_html=True)
+        st.text(f"Дата обновления: {RUFLCBCP_df['SYSTIME'].values[0]}")
+    
+    with right_column:
+        st.subheader(f"Float RUFLBICP: {load_RUFLBICP()['CURRENTVALUE'].values[0]}")
+        
+        RUFLBICP_df = load_RUFLBICP()
+        
+        last_change = float(RUFLBICP_df['LASTCHANGEPRC'].values[0])
+        change_color = "green" if last_change >= 0 else "red"
+        st.markdown(f"Изменение к закрытию: <span style='color:{change_color}; font-weight:bold; font-size:16px;'>{last_change:.2f}%</span>", unsafe_allow_html=True)
+        st.text(f"Дата обновления: {RUFLBICP_df['SYSTIME'].values[0]}")
+    
+
     
     # Блок с графиками кривых свопов
     st.header("Графики кривых свопов")
