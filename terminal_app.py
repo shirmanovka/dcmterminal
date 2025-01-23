@@ -487,7 +487,7 @@ def dcm_Currency_Indexes_Swap():
         if st.button('Обновить данные', key='refresh'):
             st.script_runner.rerun()
 
-def dcm_Listing_applicatio():
+def dcm_Listing_application():
     
     st.header("Listing application")
   
